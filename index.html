@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tienda MakeD3eco de productos decorativos impresos en 3D" />
+  <meta name="author" content="Tu Nombre" />
+  <title>Make3Deco</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+    <h1>MakeD3co</h1>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#reseñas">Reseñas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2 id="inicio">Bienvenidos a MakeD3co</h2>
+      <p>Descubrí productos impresos en 3D con diseños únicos y modernos para tu hogar.</p>
+      <div class="videos">
+        <iframe src="https://www.youtube.com/embed/TmhZoABhWoM" title="Video 1" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/i__oIYCZBPU" title="Video 2" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/vNDiMQScdOc" title="Video 3" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/MdarbmkvaMg" title="Video 4" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section>
+      <h2 id="productos">Productos Destacados</h2>
+      <div class="productos">
+        <div class="card">
+          <img src="img/lámpara1.jpg" alt="Lámpara impresa en 3D con forma de luna" />
+          <h3>Lámpara Luna</h3>
+          <p>$30.000</p>
+        </div>
+        <div class="card">
+          <img src="img/lámpara2.jpg" alt="Lámpara impresa en 3D con forma de estrella" />
+          <h3>Lámpara Estrella</h3>
+          <p>$30.000</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 id="reseñas">Reseñas de Clientes</h2>
+      <div class="grid-reseñas">
+        <div><p>"Excelente calidad y entrega rápida."</p></div>
+        <div><p>"Diseños únicos que iluminan mi casa."</p></div>
+        <div><p>"Muy recomendado, compraré otra vez."</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 id="contacto">Contacto</h2>
+      <form action="https://formspree.io/f/tu_form_id" method="POST" aria-label="Formulario de contacto">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required />
+
+        <label for="message">Mensaje:</label>
+        <textarea id="message" name="message" placeholder="Tu mensaje" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MakeD3co - Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

@@ -45,7 +45,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #6dd5ed;
+    color: #0d0d0e;
 }
 
 .cart-icon {
@@ -113,7 +113,7 @@ footer iframe {
 }
 
 .product-card button {
-    background: #007BFF;
+    background: #2d5179;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -129,7 +129,7 @@ footer iframe {
 /* Sección Reseñas (Grid) */
 .section-reviews {
     padding: 3rem 1rem;
-    background: linear-gradient(to right, #6dd5ed, #2193b0); /* Fondo con degradado */
+    background: linear-gradient(to right, #1a1e1f, #33383b); /* Fondo con degradado */
     color: #fff;
     text-align: center;
 }
@@ -173,7 +173,7 @@ footer iframe {
 }
 
 #contact-form button {
-    background: #28a745;
+    background: #304455;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -181,7 +181,7 @@ footer iframe {
 }
 
 #contact-form button:hover {
-    background: #218838;
+    background: #1b1b1b;
 }
 
 /* Estilos del Carrito Modal */

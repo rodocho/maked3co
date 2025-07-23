@@ -9,29 +9,89 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = document.querySelector('.close-button');
     const clearCartButton = document.getElementById('clear-cart');
     const contactForm = document.getElementById('contact-form');
+    const checkoutButton = document.getElementById('checkout-cart'); 
 
-    // Inicializamos el carrito desde localStorage o como un array vacío
+
+    // carrito desde localStorage 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // --- 1. OBTENER Y MOSTRAR PRODUCTOS (FETCH API) ---
-    async function fetchProducts() {
-        try {
-            // Usamos la API de "Fake Store" como ejemplo.
-            const response = await fetch('https://fakestoreapi.com/products');
-            const products = await response.json();
-            displayProducts(products);
-        } catch (error) {
-            console.error('Error al cargar los productos:', error);
-            productContainer.innerHTML = '<p>No se pudieron cargar los productos. Intenta de nuevo más tarde.</p>';
+    // --- Lista productos ---
+    const productos3D = [
+        {
+            id: 1,
+            title: 'Lámpara de Planta',
+            price: 45000,
+            image: 'img/lampara1.jpg'
+        },
+        {
+            id: 2,
+            title: 'Lámpara de Bonsai',
+            price: 45000,
+            image: 'img/lampara2.jpg'
+        },
+        {
+            id: 3,
+            title: 'Lámpara tekai',
+            price: 45000,
+            image: 'img/lampara3.jpg'
+        },
+        {
+            id: 4,
+            title: 'Lámpara Giroide',
+            price: 45000.00,
+            image: 'img/lampara4.jpg'
+        },
+        {
+            id: 5,
+            title: 'Lámpara Rondin',
+            price: 40000,
+            image: 'img/lampara5.jpg'
+        },
+        {
+            id: 6,
+            title: 'Lámpara de Luna',
+            price: 48000,
+            image: 'img/lampara6.jpg'
+        },
+        {
+            id: 7,
+            title: 'Lámpara Pipa',
+            price: 43000,
+            image: 'img/lampara7.jpg'
+        },
+        {
+            id: 8,
+            title: 'Lámpara Aruba',
+            price: 40000,
+            image: 'img/lampara8.jpg'
+        },
+        {
+            id: 9,
+            title: 'Lámpara Lab',
+            price: 45000,
+            image: 'img/lampara9.jpg'
+        },
+        {
+            id: 10,
+            title: 'Lámpara Costal',
+            price: 35000,
+            image: 'img/lampara10.jpg'
+        },
+        {
+            id: 11,
+            title: 'Lámpara Viv',
+            price: 37000.00,
+            image: 'img/lampara11.jpg'
         }
-    }
+    ];
 
+    // ---MOSTRAR PRODUCTOS ---
     function displayProducts(products) {
         productContainer.innerHTML = '';
         products.forEach(product => {
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
-            // SEO y Accesibilidad: Usamos alt en las imágenes
+            
             productCard.innerHTML = `
                 <img src="${product.image}" alt="${product.title}">
                 <h3>${product.title}</h3>
@@ -42,9 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. LÓGICA DEL CARRITO DE COMPRAS ---
-
-    // Evento para agregar productos al carrito
+    // --- LÓGICA DEL CARRITO DE COMPRAS ---
     productContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('add-to-cart')) {
             const productData = e.target.dataset;
@@ -62,13 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCart();
     }
     
-    // Actualiza localStorage y la UI del carrito
     function updateCart() {
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartUI();
     }
 
-    // Actualiza la interfaz del carrito (contador, modal, total)
     function updateCartUI() {
         cartItemsContainer.innerHTML = '';
         let total = 0;
@@ -91,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cartCount.textContent = totalItems;
     }
 
-    // Evento para eliminar productos del carrito
     cartItemsContainer.addEventListener('click', e => {
         if (e.target.classList.contains('remove-from-cart')) {
             const productId = e.target.dataset.id;
@@ -100,13 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Vaciar todo el carrito
     clearCartButton.addEventListener('click', () => {
         cart = [];
         updateCart();
     });
     
-    // --- 3. MANEJO DEL MODAL DEL CARRITO ---
+    // --- MANEJO DEL MODAL DEL CARRITO ---
     cartIcon.addEventListener('click', () => {
         cartModal.style.display = 'block';
     });
@@ -121,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 4. VALIDACIÓN DEL FORMULARIO DE CONTACTO ---
+    // --- FORMULARIO DE CONTACTO ---
     contactForm.addEventListener('submit', function(e) {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
@@ -129,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formMessage = document.getElementById('form-message');
 
         if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
-            e.preventDefault(); // Detiene el envío del formulario
+            e.preventDefault();
             formMessage.textContent = 'Todos los campos son obligatorios.';
             formMessage.style.color = 'red';
             return;
@@ -137,18 +191,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            e.preventDefault(); // Detiene el envío
+            e.preventDefault();
             formMessage.textContent = 'Por favor, introduce un correo electrónico válido.';
             formMessage.style.color = 'red';
             return;
         }
         
-        // Si todo es válido, el formulario se enviará a Formspree
         formMessage.textContent = '¡Gracias por tu mensaje! Enviando...';
         formMessage.style.color = 'green';
     });
 
+    // --- FINALIZAR COMPRA ---
+checkoutButton.addEventListener('click', () => {
+    if (cart.length === 0) {
+        alert("Tu carrito está vacío. ¡Añade algunos productos antes de finalizar la compra!");
+        return;
+    }
+
+    // Mensaje de éxito
+    alert("¡Gracias por tu compra! ");
+
+    // Vaciar el carrito y cerrar el modal
+    cart = [];
+    updateCart();
+    cartModal.style.display = 'none';
+});
+
     // --- CARGA INICIAL ---
-    fetchProducts();
-    updateCartUI();
+    displayProducts(productos3D); // Mostramos nuestros productos locales
+    updateCartUI(); // Actualizamos la UI del carrito por si había algo guardado
 });

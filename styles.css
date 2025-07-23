@@ -252,3 +252,32 @@ footer iframe {
         padding-bottom: 50px;
     }
 }
+/* Estilos para los botones del carrito */
+.cart-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.cart-buttons button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.cart-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.btn-primary {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+}
